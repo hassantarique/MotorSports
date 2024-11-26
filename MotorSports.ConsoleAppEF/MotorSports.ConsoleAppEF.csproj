@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MotorSports.EFDAL\MotorSports.EFDAL.csproj" />
+  </ItemGroup>
+
 </Project>
