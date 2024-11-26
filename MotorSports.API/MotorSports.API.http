@@ -1,0 +1,6 @@
+@MotorSports.API_HostAddress = http://localhost:5140
+
+GET {{MotorSports.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
