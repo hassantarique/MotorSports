@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MotorSports.ADODAL\MotorSports.ADODAL.csproj" />
+    <ProjectReference Include="..\MotorSports.DomainObjects\MotorSports.DomainObjects.csproj" />
+  </ItemGroup>
+
 </Project>
