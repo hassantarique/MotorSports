@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MotorSports.APILearning.NewFolder;
 
 namespace MotorSports.APILearning.Controllers
 {
@@ -7,9 +8,24 @@ namespace MotorSports.APILearning.Controllers
     public class Controller : ControllerBase
     {
         [HttpGet]
-        public JsonResult GetEvents()
+        public ActionResult<IEnumerable<EventDto>> GetEvents()
         {
-            return new JsonResult(EventDataStore.Current.Events);
+            return Ok(EventDataStore.Current.Events);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<EventDto> GetEvent(int id)
+        {
+            EventDto? cityToReturn = EventDataStore.Current.Events.FirstOrDefault(c => c.Id == id);
+
+            if (cityToReturn == null)
+            {
+                return NotFound();
+            }
+
+
+            return Ok(cityToReturn);
+
         }
 
     }
