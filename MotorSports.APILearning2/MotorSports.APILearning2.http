@@ -1,0 +1,6 @@
+@MotorSports.APILearning2_HostAddress = http://localhost:5107
+
+GET {{MotorSports.APILearning2_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
