@@ -1,8 +1,14 @@
+using Microsoft.AspNetCore.StaticFiles;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers(options => options.ReturnHttpNotAcceptable = true);
+builder.Services.AddControllers(options => 
+{
+    options.ReturnHttpNotAcceptable = true;
+}).AddXmlDataContractSerializerFormatters();
+
 
 builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = ctx =>
 {
@@ -12,6 +18,7 @@ builder.Services.AddProblemDetails(options => options.CustomizeProblemDetails = 
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
 var app = builder.Build();
 
