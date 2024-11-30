@@ -9,13 +9,18 @@ namespace MotorSports.API.Controllers
     [ApiController]
     public class ParticipantsController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("events")]
+        public ActionResult<IEnumerable<Event>> GetEvents()
+        {
+            List<Event> allEventsStoredInDB = new EventManagerDA().ViewAllEventsSP();
+            return Ok(allEventsStoredInDB);
+        }
+
+        [HttpGet("results")]
         public ActionResult<IEnumerable<RaceResult>> GetResults()
         {
             List<RaceResult> results = new EventParticipantDA().ViewAllResultsSP();
-
             return Ok(results);
         }
-
     }
 }

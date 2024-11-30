@@ -1,5 +1,6 @@
 ﻿using MotoSports.ADODAL;
 using MotorSports.DomainObjects;
+using MotorSports.ADODAL;
 
 internal class Program
 {
@@ -679,7 +680,7 @@ internal class Program
     {
         try
         {
-            UserDA userDA = new UserDA();
+            RaceScheduleDA userDA = new RaceScheduleDA();
             userDA.ViewRaceScheduleSP();
         }
         catch (Exception ex)
@@ -692,7 +693,7 @@ internal class Program
     {
         try
         {
-            UserDA userDA = new UserDA();
+            RaceStandingsDA userDA = new RaceStandingsDA();
             userDA.ViewRaceStandingsSP();
         }
         catch (Exception ex)
