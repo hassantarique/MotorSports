@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorSports.API", "MotorSpo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorSports.APILearning", "MotorSports.APILearning\MotorSports.APILearning.csproj", "{FBBE4B0F-89BA-4A6D-95DB-D43BACEC4BE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorSports.APILearning2", "MotorSports.APILearning2\MotorSports.APILearning2.csproj", "{F2B9C7EE-E28D-4BD1-AE72-9388D5C8B5E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorSports.APILearning2", "MotorSports.APILearning2\MotorSports.APILearning2.csproj", "{F2B9C7EE-E28D-4BD1-AE72-9388D5C8B5E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorSports.DB", "MotorSports.DB\MotorSports.DB.csproj", "{A14D024C-9FC6-4A86-94D4-C5039528725A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,8 @@ Global
 		{F2B9C7EE-E28D-4BD1-AE72-9388D5C8B5E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2B9C7EE-E28D-4BD1-AE72-9388D5C8B5E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2B9C7EE-E28D-4BD1-AE72-9388D5C8B5E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A14D024C-9FC6-4A86-94D4-C5039528725A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14D024C-9FC6-4A86-94D4-C5039528725A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
