@@ -62,7 +62,7 @@ namespace MotoSports.ADODAL
                             results.Add(new RaceResult
                             {
                                 EventParticipantId = Convert.ToInt32(reader["EventParticipantID"]),
-                                LapTime = (TimeOnly)reader["LapTime"],
+                                LapTime = TimeOnly.FromTimeSpan((TimeSpan)reader["LapTime"]),
                                 LapNumber = Convert.ToInt32(reader["LapNumber"]),
                                 Position = Convert.ToInt32(reader["Position"]),
                                 RaceResultId = Convert.ToInt32(reader["RaceResultId"])

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using MotorSports.DomainObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,37 +81,45 @@ namespace MotoSports.ADODAL
             }
         }
 
-        public void ViewAllPlayersSP()
+        public List<Participant> ViewAllPlayersSP()
         {
+            List<Participant> participants = new List<Participant>();
+
             using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand("ViewAllPlayers", connection);
-
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)
                     {
-                        Console.WriteLine("No Participants Found.");
-                    }
+                        while (reader.Read())
+                        {
+                            Participant participant = new Participant
+                            {
+                                ParticipantId = Convert.ToInt32(reader["ParticipantID"]),
+                                UserId = Convert.ToInt32(reader["UserID"]),
+                                LicenseNumber = reader["LicenseNumber"].ToString(),
+                                TeamId = reader["TeamID"] != DBNull.Value ? Convert.ToInt32(reader["TeamID"]) : (int?)null
+                            };
 
-                    while (reader.Read())
-                    {
-                        Console.WriteLine("ParticipantID: {0}", reader["ParticipantID"]);
-                        Console.WriteLine("UserID: {0}", reader["UserID"]);
-                        Console.WriteLine("LicenseNumber: {0}", reader["LicenseNumber"]);
-                        Console.WriteLine("TeamID: {0}", reader["TeamID"]);
-                        Console.WriteLine(new string('-', 50));
+                            participants.Add(participant);
+                        }
                     }
                 }
             }
+
+            return participants;
         }
 
-        public void ViewPlayerPerformasSP(int eventParticipantId)
+
+        public List<RaceResult> ViewPlayerPerformasSP(int eventParticipantId)
         {
+            List<RaceResult> results = new List<RaceResult>();
+
             using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
@@ -131,23 +140,23 @@ namespace MotoSports.ADODAL
                         {
                             while (reader.Read())
                             {
-                                Console.WriteLine("EventParticipantId: {0}", reader["EventParticipantId"]);
-                                Console.WriteLine("EventId: {0}", reader["EventId"]);
-                                Console.WriteLine("TeamId: {0}", reader["TeamId"]);
-                                Console.WriteLine("RaceResultId: {0}", reader["RaceResultId"]);
-                                Console.WriteLine("Position: {0}", reader["Position"]);
-                                Console.WriteLine("LapTime: {0}", reader["LapTime"]);
-                                Console.WriteLine("FinishTime: {0}", reader["FinishTime"]);
-                                Console.WriteLine(new string('-', 50));
+                                RaceResult result = new RaceResult
+                                {
+                                    RaceResultId = Convert.ToInt32(reader["RaceResultId"]),
+                                    EventParticipantId = Convert.ToInt32(reader["EventParticipantId"]),
+                                    LapNumber = Convert.ToInt32(reader["LapNumber"]),
+                                    LapTime = TimeOnly.FromTimeSpan((TimeSpan)reader["LapTime"]),
+                                    Position = reader["Position"] != DBNull.Value ? Convert.ToInt32(reader["Position"]) : (int?)null
+                                };
+
+                                results.Add(result);
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine("No records found for the given EventParticipantId.");
                         }
                     }
                 }
             }
+
+            return results;
         }
 
     }
