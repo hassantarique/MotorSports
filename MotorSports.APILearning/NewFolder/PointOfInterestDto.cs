@@ -13,7 +13,6 @@
                 return PointsOfInterest.Count;
             }
         }
-
         public ICollection<PointOfInterestDto> PointsOfInterest { get; set; }
             = new List<PointOfInterestDto>();
     }

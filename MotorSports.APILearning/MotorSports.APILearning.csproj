@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MotorSports.ConsoleAppEF\MotorSports.ConsoleAppEF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="My Resume 1.2_.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
