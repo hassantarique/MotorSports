@@ -94,6 +94,50 @@ namespace MotoSports.ADODAL
             }
         }
 
+        public List<Sponsor> GetSponsorsByEventID(int eventID)
+        {
+            List<Sponsor> sponsors = new List<Sponsor>();
+
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("GetSponsorsByEventID", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Add the parameter for EventID
+                    command.Parameters.Add(new SqlParameter("@EventID", System.Data.SqlDbType.Int)
+                    {
+                        Value = eventID
+                    });
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                sponsors.Add(new Sponsor
+                                {
+                                    SponsorId = Convert.ToInt32(reader["SponsorID"]),
+                                    SponsorName = reader["SponsorName"].ToString(),
+                                    ContactInfo = reader["ContactInfo"].ToString(),
+                                    SponsorType = reader["SponsorType"].ToString()
+                                });
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No sponsored events found for the given Sponsor ID.");
+                        }
+                    }
+                }
+            }
+
+            return sponsors;
+        }
+
     }
 
 }

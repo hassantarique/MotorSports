@@ -207,9 +207,12 @@ namespace MotoSports.ADODAL
                                 EventId = Convert.ToInt32(reader["EventId"]),
                                 EventName = reader["EventName"].ToString(),
                                 VenueId = Convert.ToInt32(reader["VenueId"]),
+                                VenueName = reader["VenueName"].ToString(),
                                 EventDate = (DateTime)reader["EventDate"],
                                 TotalLaps = Convert.ToInt32(reader["TotalLaps"]),
-                                StatusId = Convert.ToInt32(reader["StatusId"])
+                                StatusId = Convert.ToInt32(reader["StatusId"]),
+                                StatusName = reader["StatusName"].ToString(),
+                                EventSponsors = new EventSponsorsDA().GetSponsorsByEventID(Convert.ToInt32(reader["EventId"]))
                             });
                         }
                     }
