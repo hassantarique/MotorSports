@@ -27,5 +27,24 @@ namespace MotorSports.API.Controllers
             return Ok(matchingEvent);
         }
 
+        [HttpPost]
+        public ActionResult<Event> CreateEvent(string eventName, int venueId, DateTime eventDate, int totallaps, int statusId)
+        {
+
+            var newEvent = new Event
+            {
+                EventName = eventName.ToString(),
+                VenueId = venueId,
+                EventDate = eventDate,
+                TotalLaps = totallaps,
+                StatusId = statusId
+            };
+
+            var eventManagerDA = new EventManagerDA();
+            eventManagerDA.EventCreation(newEvent);
+
+            return Ok(newEvent);
+        }
+
     }
 }
