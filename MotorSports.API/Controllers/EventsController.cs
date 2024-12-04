@@ -27,11 +27,11 @@ namespace MotorSports.API.Controllers
             return Ok(matchingEvent);
         }
 
-        [HttpPost]
+        [HttpPost("CreateEvent")]
         public ActionResult<Event> CreateEvent(string eventName, int venueId, DateTime eventDate, int totallaps, int statusId)
         {
 
-            var newEvent = new Event
+            Event? newEvent = new Event
             {
                 EventName = eventName.ToString(),
                 VenueId = venueId,
@@ -44,6 +44,14 @@ namespace MotorSports.API.Controllers
             eventManagerDA.EventCreation(newEvent);
 
             return Ok(newEvent);
+        }
+
+        [HttpPost("AddSponsor")]
+        public ActionResult AddSponsorToEvent(int sponsorId, int eventId)
+        {
+            EventManagerDA eventManagerDA = new EventManagerDA();
+            eventManagerDA.AssignSponsor(sponsorId, eventId);
+            return Ok("Sponsor assigned successfully.");
         }
 
     }
