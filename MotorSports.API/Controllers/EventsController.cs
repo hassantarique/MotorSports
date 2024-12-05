@@ -51,7 +51,7 @@ namespace MotorSports.API.Controllers
         {
             EventManagerDA eventManagerDA = new EventManagerDA();
             eventManagerDA.AssignSponsor(sponsorId, eventId);
-            return Ok("Sponsor assigned successfully.");
+            return CreatedAtRoute(sponsorId, eventId);
         }
 
     }
