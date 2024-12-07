@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using MotorSports.DomainObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -144,8 +145,10 @@ namespace MotoSports.ADODAL
             }
         }
 
-        public void ViewAllRolesSP()
+        public List<User> ViewAllRolesSP()
         {
+            List<User> users = new List<User>();
+
             using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
@@ -156,28 +159,24 @@ namespace MotoSports.ADODAL
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.HasRows)
+                        while (reader.Read())
                         {
-                            Console.WriteLine(new string('-', 50));
-                            while (reader.Read())
+                            User user = new User
                             {
-                                Console.WriteLine("UserID: {0}", reader["UserID"]);
-                                Console.WriteLine("Username: {0}", reader["Username"]);
-                                Console.WriteLine("PasswordHash: {0}", reader["PaswordHash"]);
-                                Console.WriteLine("Email: {0}", reader["EMail"]);
-                                Console.WriteLine("FirstName: {0}", reader["FirstName"]);
-                                Console.WriteLine("LastName: {0}", reader["LastName"]);
-                                Console.WriteLine("DateOfBirth: {0}", reader["DateOfBirth"]);
-                                Console.WriteLine(new string('-', 50));
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("No users found in the table.");
+                                UserId = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                Username = reader.GetString(reader.GetOrdinal("Username")),
+                                PaswordHash = reader.GetString(reader.GetOrdinal("PaswordHash")),
+                                Email = reader.GetString(reader.GetOrdinal("EMail")),
+                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            };
+                            users.Add(user);
                         }
                     }
                 }
             }
+
+            return users;
         }
 
         public void SetEventStatusDA(int eventId, int statusId)

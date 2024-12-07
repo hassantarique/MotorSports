@@ -23,7 +23,7 @@ namespace MotorSports.API.Controllers
             return StatusCode(StatusCodes.Status201Created, "Role assigned successfully.");
         }
 
-        [HttpDelete]
+        [HttpDelete("Role")]
         public ActionResult<User> RemoveRole(int userId, int roleId)
         {
             if (userId <= 0 || roleId <= 0)
@@ -36,5 +36,32 @@ namespace MotorSports.API.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("AllRoles")]
+        public ActionResult<IEnumerable<User>> GetRole()
+        {
+            List<User> Roles = new AdminDA().ViewAllRolesSP();
+            return Ok(Roles);
+        }
+
+        [HttpPost("Status")]
+        public ActionResult<Event> AssignStatus(int eventId, int statusId)
+        {
+            AdminDA adminDA = new AdminDA();
+            adminDA.SetEventStatusDA(eventId, statusId);
+
+            return Ok(adminDA);
+        }
+
+
+        //Not Finished
+        [HttpGet("AllStatuses")]
+        public void GetStatuses()
+        {
+            AdminDA adminDA = new AdminDA();
+            adminDA.ViewAllStatusesSP();
+            
+        }
+
     }
 }
