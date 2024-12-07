@@ -9,6 +9,24 @@ namespace MotorSports.API.Controllers
     [ApiController]
     public class TeamsController : ControllerBase
     {
+        [HttpPost]
+        public ActionResult<Team> AddPlayer(int userId, int teamId, int license)
+        {
+            TeamManagerDA teamManagerDA = new TeamManagerDA();
+            teamManagerDA.PlayerAddition(userId, teamId, license);
+
+            return StatusCode(StatusCodes.Status201Created, "Added successfully.");
+        }
+
+        [HttpDelete]
+        public ActionResult DeletePlayer(int userId)
+        {
+            TeamManagerDA teamManagerDA = new TeamManagerDA();
+            teamManagerDA.PlayerRemoval(userId);
+
+            return StatusCode(StatusCodes.Status201Created, "Removed successfully.");
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<Participant>> GetPlayers()
         {

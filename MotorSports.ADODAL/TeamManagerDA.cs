@@ -114,8 +114,7 @@ namespace MotoSports.ADODAL
 
             return participants;
         }
-
-
+ 
         public List<RaceResult> ViewPlayerPerformasSP(int eventParticipantId)
         {
             List<RaceResult> results = new List<RaceResult>();
@@ -161,3 +160,4 @@ namespace MotoSports.ADODAL
 
     }
 }
+ 
