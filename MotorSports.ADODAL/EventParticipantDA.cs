@@ -13,26 +13,47 @@ namespace MotoSports.ADODAL
 
             return connection;
         }
-        public void RaceRegistration(int eventID, int teamID)
+        public void RaceRegistration(int eventID, int participantID)
         {
             using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
 
-                string query =
-                    @"INSERT INTO
-                                 [EventParticipants] (EventID,
-                                                      TeamID )
-                      VALUES
-                            (@EventID, @TeamID)";
+                // Check if the record already exists
+                string checkQuery = @"
+            SELECT
+                  COUNT(1) 
+            FROM
+                [EventParticipants]
+            WHERE
+                EventID = @EventID AND ParticipantID = @ParticipantID";
 
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
                 {
-                    command.Parameters.AddWithValue("@EventID", eventID);
+                    checkCommand.Parameters.AddWithValue("@EventID", eventID);
+                    checkCommand.Parameters.AddWithValue("@ParticipantID", participantID);
 
-                    command.Parameters.AddWithValue("TeamID", teamID);
+                    int exists = (int)checkCommand.ExecuteScalar();
+                    if (exists > 0)
+                    {
+                        Console.WriteLine("The participant is already registered for this event.");
+                        return; // Exit the method if the record already exists
+                    }
+                }
 
-                    int rowsAffected = command.ExecuteNonQuery();
+                // Insert the record if it doesn't exist
+                string insertQuery = @"
+            INSERT INTO
+                       [EventParticipants] (EventID, ParticipantID)
+            VALUES 
+                  (@EventID, @ParticipantID)";
+
+                using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                {
+                    insertCommand.Parameters.AddWithValue("@EventID", eventID);
+                    insertCommand.Parameters.AddWithValue("@ParticipantID", participantID);
+
+                    int rowsAffected = insertCommand.ExecuteNonQuery();
                     Console.WriteLine($"Rows affected: {rowsAffected}");
                 }
             }
