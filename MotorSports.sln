@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotorSports.APILearning2", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorSports.DB", "MotorSports.DB\MotorSports.DB.csproj", "{A14D024C-9FC6-4A86-94D4-C5039528725A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorSports.MAUI", "MotorSports.MAUI\MotorSports.MAUI.csproj", "{6D8EDA76-9659-4E9C-8D81-E27580643C41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,12 @@ Global
 		{F2B9C7EE-E28D-4BD1-AE72-9388D5C8B5E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A14D024C-9FC6-4A86-94D4-C5039528725A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A14D024C-9FC6-4A86-94D4-C5039528725A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8EDA76-9659-4E9C-8D81-E27580643C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D8EDA76-9659-4E9C-8D81-E27580643C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D8EDA76-9659-4E9C-8D81-E27580643C41}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6D8EDA76-9659-4E9C-8D81-E27580643C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8EDA76-9659-4E9C-8D81-E27580643C41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D8EDA76-9659-4E9C-8D81-E27580643C41}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
